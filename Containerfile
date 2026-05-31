@@ -48,17 +48,13 @@ run --mount=type=cache,target=/var/cache/apt,sharing=locked \
   libxcursor-dev \
   libxi-dev \
   libxinerama-dev \
+  libc6-dev \
   && \
   apt-get clean
 
 env DEBIAN_FRONTEND=
 
 from scratch as final
-COPY --from=builder /usr/include /usr/include
-COPY --from=builder /usr/lib /usr/lib
-COPY --from=builder /usr/lib64 /usr/lib64
-COPY --from=builder /usr/share /usr/share
-COPY --from=builder /usr/local/include /usr/local/include
-COPY --from=builder /usr/local/lib /usr/local/lib
-COPY --from=builder /usr/lib/*/qt6 /usr/lib/
+COPY --from=builder /usr /usr
 COPY --from=builder /lib /lib
+COPY --from=builder /lib64 /lib64
