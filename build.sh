@@ -1,3 +1,4 @@
+rm -fr sdk-rootfs.tar.zst
 buildah build \
   --layers \
   -f Containerfile \
