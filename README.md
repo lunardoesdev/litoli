@@ -45,6 +45,17 @@ cmake -B build \
   -DCMAKE_CXX_COMPILER_TARGET=aarch64-linux-gnu
 ```
 
+### CMake with clang (it doesn't work without --allow-shlib-undefined):
+```sh
+cmake -DCMAKE_SYSROOT=$HOME/litoli \
+  -DCMAKE_C_COMPILER=clang \
+  -DCMAKE_CXX_COMPILER=clang++ \
+  -DCMAKE_C_FLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined" \
+  -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined" \
+  ..
+
+```
+
 ### pkg-config
 
 ```sh

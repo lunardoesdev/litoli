@@ -55,6 +55,10 @@ run --mount=type=cache,target=/var/cache/apt,sharing=locked \
 env DEBIAN_FRONTEND=
 
 from scratch as final
-COPY --from=builder /usr /usr
+COPY --from=builder /usr/local/include /usr/local/include
+COPY --from=builder /usr/lib /usr/lib
+COPY --from=builder /usr/lib64 /usr/lib64
+COPY --from=builder /usr/share /usr/share
+COPY --from=builder /usr/include /usr/include
 COPY --from=builder /lib /lib
 COPY --from=builder /lib64 /lib64
