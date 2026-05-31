@@ -50,8 +50,8 @@ cmake -B build \
 cmake -DCMAKE_SYSROOT=$HOME/litoli \
   -DCMAKE_C_COMPILER=clang \
   -DCMAKE_CXX_COMPILER=clang++ \
-  -DCMAKE_C_FLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined" \
-  -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined" \
+  -DCMAKE_C_FLAGS="-Wl,--allow-shlib-undefined" \
+  -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
   ..
 
 ```
