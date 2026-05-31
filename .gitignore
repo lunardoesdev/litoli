@@ -2,3 +2,5 @@ sdk-rootfs.tar
 sdk-rootfs.tar.gz
 sdk-rootfs.tar.xz
 sdk-rootfs.tar.zst
+*.tar
+*.tar.*
