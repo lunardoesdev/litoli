@@ -78,11 +78,6 @@
           export CMAKE_C_COMPILER_TARGET=x86_64-linux-gnu
           export CMAKE_CXX_COMPILER_TARGET=x86_64-linux-gnu
           
-          export CMAKE_FIND_ROOT_PATH="$LITOLI_SDK"
-          export CMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY
-          export CMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY
-          export CMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY
-          
           echo "Litoli dev shell — LITOLI_SDK=$LITOLI_SDK"
         '';
       };
