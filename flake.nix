@@ -64,8 +64,8 @@
           export STRIP=${binutils'}/bin/llvm-strip
           export INCLUDEDIRS="$LITOLI_SDK/usr/include"
           export LIBDIRS="$LITOLI_SDK/usr/lib/x86_64-linux-gnu"
-          export CFLAGS="-I$INCLUDEDIRS -L$LIBDIRS --sysroot=$LITOLI_SDK"
-          export CXXFLAGS="-I$INCLUDEDIRS -L$LIBDIRS --sysroot=$LITOLI_SDK"
+          export CFLAGS="-I$INCLUDEDIRS --sysroot=$LITOLI_SDK"
+          export CXXFLAGS="-I$INCLUDEDIRS --sysroot=$LITOLI_SDK"
           export LDFLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/lib64/ld-linux-x86-64.so.2"
           
           export PKG_CONFIG_SYSROOT_DIR="$LITOLI_SDK"
