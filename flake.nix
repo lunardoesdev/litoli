@@ -73,7 +73,6 @@
           
           export CPM_SOURCE_CACHE="$HOME/.cache/CPM"
           
-          export CMAKE_SYSROOT="$LITOLI_SDK"
           export CMAKE_LIBRARY_PATH="$LIBDIRS"
           export CMAKE_INCLUDE_PATH="$INCLUDEDIRS"
           export CMAKE_C_COMPILER_TARGET=x86_64-linux-gnu
