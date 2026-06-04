@@ -56,21 +56,34 @@
         ];
         shellHook = ''
           export LITOLI_SDK="$LITOLI_SDK"
-          export PKG_CONFIG_SYSROOT_DIR="$LITOLI_SDK"
-          export PKG_CONFIG_LIBDIR="$LITOLI_SDK/usr/lib/pkgconfig:$LITOLI_SDK/usr/share/pkgconfig:$LITOLI_SDK/usr/lib/x86_64-linux-gnu/pkgconfig"
           export CC=${clang'}/bin/clang
           export CXX=${clang'}/bin/clang++
           export AR=${binutils'}/bin/llvm-ar
           export RANLIB=${binutils'}/bin/llvm-ranlib
           export NM=${binutils'}/bin/llvm-nm
           export STRIP=${binutils'}/bin/llvm-strip
-          export CMAKE_SYSROOT="$LITOLI_SDK"
           export INCLUDEDIRS="$LITOLI_SDK/usr/include"
           export LIBDIRS="$LITOLI_SDK/usr/lib/x86_64-linux-gnu"
-          export CFLAGS="-I$INCLUDEDIRS -L$LIBDIRS"
-          export CXXFLAGS="-I$INCLUDEDIRS -L$LIBDIRS"
+          export CFLAGS="-I$INCLUDEDIRS -L$LIBDIRS --sysroot=$LITOLI_SDK"
+          export CXXFLAGS="-I$INCLUDEDIRS -L$LIBDIRS --sysroot=$LITOLI_SDK"
           export LDFLAGS="-fuse-ld=lld -Wl,--allow-shlib-undefined -Wl,--dynamic-linker=/lib64/ld-linux-x86-64.so.2"
+          
+          export PKG_CONFIG_SYSROOT_DIR="$LITOLI_SDK"
+          export PKG_CONFIG_LIBDIR="$LITOLI_SDK/usr/lib/pkgconfig:$LITOLI_SDK/usr/share/pkgconfig:$LITOLI_SDK/usr/lib/x86_64-linux-gnu/pkgconfig"
+          
           export CPM_SOURCE_CACHE="$HOME/.cache/CPM"
+          
+          export CMAKE_SYSROOT="$LITOLI_SDK"
+          export CMAKE_LIBRARY_PATH="$LIBDIRS"
+          export CMAKE_INCLUDE_PATH="$INCLUDEDIRS"
+          export CMAKE_C_COMPILER_TARGET=x86_64-linux-gnu
+          export CMAKE_CXX_COMPILER_TARGET=x86_64-linux-gnu
+          
+          export CMAKE_FIND_ROOT_PATH="$LITOLI_SDK"
+          export CMAKE_FIND_ROOT_PATH_MODE_LIBRARY=ONLY
+          export CMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY
+          export CMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY
+          
           echo "Litoli dev shell — LITOLI_SDK=$LITOLI_SDK"
         '';
       };
