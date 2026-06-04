@@ -1,16 +1,18 @@
 # litoli — Linux-To-Linux sysroot
 
 # quick demo:
-1. install nix if not installed, i recommend determinated nix installer with flakes enabled by default:
+#### install nix if not installed 
+i recommend determinated nix installer with flakes enabled by default:
 ```
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 ```
 
-1. enter the shell:
+#### enter the shell:
 ```
 nix develop git+https://github.com/lunardoesdev/litoli#default
 ```
-1. build any cmake project like usual, for example take https://github.com/lunardoesdev/litoli-nix-example:
+#### build any cmake project like usual
+for example take https://github.com/lunardoesdev/litoli-nix-example:
 ```
 git clone --depth=1 https://github.com/lunardoesdev/litoli-nix-example
 cd litoli-nix-example
