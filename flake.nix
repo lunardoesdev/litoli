@@ -69,6 +69,7 @@
           export AS="$CC"
           export ASFLAGS="--target=$TARGET"
           export LD="$CC"
+          export LD_FOR_TARGET="$LD"
           export AR=${binutils'}/bin/llvm-ar
           export RANLIB=${binutils'}/bin/llvm-ranlib
           export NM=${binutils'}/bin/llvm-nm
@@ -86,6 +87,10 @@
           
           export CMAKE_LIBRARY_PATH="$LIBDIRS"
           export CMAKE_INCLUDE_PATH="$INCLUDEDIRS"
+          
+          export CARGO_BUILD_TARGET="x86_64-unknown-linux-gnu"
+          export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER="$LD"
+          export CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUSTFLAGS="-C link-arg=-L$LIBDIRS -C link-arg=--sysroot=$LITOLI_SDK -C link-arg=-Wl,--dynamic-linker=/lib64/ld-linux-x86-64.so.2 -C link-arg=-fuse-ld=lld"
           
           echo "Litoli dev shell — LITOLI_SDK=$LITOLI_SDK"
         '';
