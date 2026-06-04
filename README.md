@@ -1,6 +1,11 @@
 # litoli — Linux-To-Linux sysroot
 
 # quick demo:
+1. install nix if not installed, i recommend determinated nix installer with flakes enabled by default:
+```
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+```
+
 1. enter the shell:
 ```
 nix develop git+https://github.com/lunardoesdev/litoli#default
