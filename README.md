@@ -1,5 +1,24 @@
 # litoli — Linux-To-Linux sysroot
 
+# quick demo:
+1. enter the shell:
+```
+nix develop git+https://github.com/lunardoesdev/litoli#default
+```
+1. build any cmake project like usual, for example take https://github.com/lunardoesdev/litoli-nix-example:
+```
+git clone --depth=1 https://github.com/lunardoesdev/litoli-nix-example
+cd litoli-nix-example
+mkdir build
+cd build
+cmake ..
+make -j4
+```
+
+now in this build directory you have properly working gui binary targeted for Debian Bookworm, congrats. No nixGL needed, you've just cross-compiled for desired linux! 
+
+
+# About
 Pre-built Linux cross-compilation sysroot with SDL2, SFML, GTK3, Qt6, OpenGL,
 Vulkan, GLFW, audio libs (ALSA, PulseAudio, JACK, OpenAL), X11, and more.
 
