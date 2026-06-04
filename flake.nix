@@ -53,6 +53,7 @@
           pkg-config
           zstd
           git
+          xmake
         ];
         shellHook = ''
           export LITOLI_SDK="$LITOLI_SDK"
