@@ -4,3 +4,6 @@ sdk-rootfs.tar.xz
 sdk-rootfs.tar.zst
 *.tar
 *.tar.*
+builddir
+build
+bb
