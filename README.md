@@ -35,14 +35,17 @@ cmake -B build -DCMAKE_SYSROOT=$HOME/litoli -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_C
 cmake --build build
 ```
 
-Cross:
+Cross (switch compilers to needed ones):
 ```sh
-cmake -B build \
+cmake \
   -DCMAKE_SYSROOT=$HOME/litoli \
-  -DCMAKE_C_COMPILER=gcc-for-target \
-  -DCMAKE_CXX_COMPILER=g++-for-target \
-  -DCMAKE_C_COMPILER_TARGET=aarch64-linux-gnu \
-  -DCMAKE_CXX_COMPILER_TARGET=aarch64-linux-gnu
+  -DCMAKE_C_COMPILER=gcc \
+  -DCMAKE_CXX_COMPILER=g++ \
+  -DCMAKE_C_COMPILER_TARGET=x86_64-linux-gnu \
+  -DCMAKE_CXX_COMPILER_TARGET=x86_64-linux-gnu \
+  -DCMAKE_C_COMPILER_WORKS=ON \
+  -DCMAKE_CXX_COMPILER_WORKS=ON \
+  ..
 ```
 
 ### CMake with clang (it doesn't work without --allow-shlib-undefined):
@@ -53,6 +56,12 @@ cmake -DCMAKE_SYSROOT=$HOME/litoli \
   -DCMAKE_C_FLAGS="-Wl,--allow-shlib-undefined" \
   -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined" \
   ..
+
+```
+
+
+```
+cmake   -DCMAKE_SYSROOT="$LITOLI_SDK"   -DCMAKE_MODULE_PATH="$(find "$LITOLI_SDK/usr/share" -maxdepth 3 -type d -path '*/cmake-*/Modules')"   -DCMAKE_C_COMPILER=gcc   -DCMAKE_CXX_COMPILER=g++   -DCMAKE_C_COMPILER_TARGET=x86_64-linux-gnu   -DCMAKE_C_FLAGS="-Wl,--allow-shlib-undefined"   -DCMAKE_EXE_LINKER_FLAGS="-Wl,--allow-shlib-undefined"   -DCMAKE_C_COMPILER_WORKS=ON   -DCMAKE_CXX_COMPILER_WORKS=ON   -DCMAKE_FIND_ROOT_PATH="$LITOLI_SDK"    ..
 
 ```
 
