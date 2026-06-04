@@ -3,12 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, ... }: let
+  outputs = { self, nixpkgs, rust-overlay, ... }: let
     systems = [ "x86_64-linux" "aarch64-linux" ];
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-    pkgsFor = system: import nixpkgs { inherit system; };
+    pkgsFor = system: overlays: import nixpkgs { inherit system overlays; };
 
     litoli-sdk = pkgs: pkgs.stdenv.mkDerivation {
       name = "litoli-sdk";
@@ -26,14 +27,18 @@
     };
   in {
     packages = forAllSystems (system: let
-      pkgs = pkgsFor system;
+      pkgs = pkgsFor system [];
     in {
       litoli-sdk = litoli-sdk pkgs;
     });
 
     devShells = forAllSystems (system: let
-      pkgs = pkgsFor system;
+      overlays = [ (import rust-overlay) ];
+      pkgs = pkgsFor system overlays;
       sdk = litoli-sdk pkgs;
+      rust = pkgs.rust-bin.stable.latest.default.override {
+        targets = [ "x86_64-unknown-linux-gnu" ];
+      };
       clang' = pkgs.llvmPackages.clang-unwrapped;
       binutils' = pkgs.llvmPackages.bintools-unwrapped;
     in {
@@ -54,6 +59,7 @@
           zstd
           git
           xmake
+          rust
         ];
         shellHook = ''
           export LITOLI_SDK="$LITOLI_SDK"
