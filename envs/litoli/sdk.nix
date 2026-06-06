@@ -11,4 +11,4 @@
         mkdir -p $out
         tar --zstd -xf $src -C $out
       '';
-    };
+    }

@@ -12,9 +12,9 @@
     rustOverlay = (import rust-overlay);
   in {
     devShells = forAllSystems (system: let
-      pkgs = import nixpkgs { inherit system; overlays = [rust-overlay]; };
+      pkgs = import nixpkgs { inherit system; overlays = [rustOverlay]; };
     in {
-      default = pkgs.callPackage ./envs/litoli/shell.nix {};
+      default = pkgs.callPackage ./envs/litoli {};
     });
     
     formatter = forAllSystems (system: (import nixpkgs {inherit system;}).nixpkgs-fmt );

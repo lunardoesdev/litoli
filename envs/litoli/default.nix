@@ -57,4 +57,4 @@ in  pkgs.mkShell {
           
           echo "Litoli dev shell — LITOLI_SDK=$LITOLI_SDK"
         '';
-      };
+      }
